@@ -80,6 +80,7 @@ def client():
 
 @pytest.mark.django_db
 class TestLettingsUrls:
+    """Class grouping URL tests of the Lettings application."""
     def test_lettings_index_url(self):
         """
         GIVEN a URL path for lettings index is expected,
@@ -105,6 +106,7 @@ class TestLettingsUrls:
 
 @pytest.mark.django_db
 class TestLettingsViews:
+    """Class grouping view tests of the Lettings application."""
     def test_lettings_index_view(self, client, letting_fixture):
         """
         GIVEN a client and a letting object for the lettings index view,
@@ -140,6 +142,7 @@ class TestLettingsViews:
 
 @pytest.mark.django_db
 class TestLettingsModels:
+    """Class grouping model tests of the Lettings application."""
     def test_address_model(self, address_fixture):
         """
         GIVEN an Address object,
@@ -164,6 +167,7 @@ class TestLettingsModels:
 
 @pytest.mark.django_db
 class TestLettingsIntegration:
+    """Class grouping integration tests of the Lettings application."""
     def test_two_lettings_creation_url_and_navigation(self,
                                                       client,
                                                       letting_fixture,
