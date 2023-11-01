@@ -1,0 +1,2 @@
+[run]
+omit = lettings/migrations/*, profiles/migrations/*, oc_lettings_site/migrations/*, tests.py, __init__.py, manage.py

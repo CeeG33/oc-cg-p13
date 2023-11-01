@@ -26,9 +26,39 @@ def address_fixture():
 
 
 @pytest.fixture
+def address_fixture2():
+    number = 55
+    street = "av des Champs-Elysées"
+    city = "Paris"
+    state = "FR"
+    zip_code = 75008
+    country_iso_code = "FR"
+
+    address = Address.objects.create(number=number,
+                                     street=street,
+                                     city=city,
+                                     state=state,
+                                     zip_code=zip_code,
+                                     country_iso_code=country_iso_code)
+
+    return address
+
+
+@pytest.fixture
 def letting_fixture(address_fixture):
     title = "Best villa in town"
     address = address_fixture
+
+    letting = Letting.objects.create(title=title,
+                                     address=address)
+
+    return letting
+
+
+@pytest.fixture
+def letting_fixture2(address_fixture2):
+    title = "Flat with jacuzzi"
+    address = address_fixture2
 
     letting = Letting.objects.create(title=title,
                                      address=address)
@@ -94,3 +124,42 @@ class TestLettingsModels:
         expected_content = letting_fixture.title
 
         assert str(letting_fixture) == expected_content
+
+
+@pytest.mark.django_db
+class TestLettingsIntegration:
+    def test_two_lettings_creation_url_and_navigation(self,
+                                                      client,
+                                                      letting_fixture,
+                                                      letting_fixture2):
+        path = reverse("lettings:lettings_index")
+        response = client.get(path)
+        content = response.content.decode()
+
+        expected_content = letting_fixture.title
+        expected_content2 = letting_fixture2.title
+
+        assert expected_content in content
+        assert expected_content2 in content
+        assert response.status_code == 200
+        assertTemplateUsed(response, "lettings/index.html")
+
+        path = reverse("lettings:letting", kwargs={"letting_id": 1})
+        response = client.get(path)
+        content = response.content.decode()
+
+        expected_content = letting_fixture.address.street
+
+        assert expected_content in content
+        assert response.status_code == 200
+        assertTemplateUsed(response, "lettings/letting.html")
+
+        path = reverse("lettings:letting", kwargs={"letting_id": 2})
+        response = client.get(path)
+        content = response.content.decode()
+
+        expected_content = letting_fixture2.address.street
+
+        assert expected_content in content
+        assert response.status_code == 200
+        assertTemplateUsed(response, "lettings/letting.html")
