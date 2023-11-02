@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
 import sentry_sdk
-import logging
 
 
 from pathlib import Path
