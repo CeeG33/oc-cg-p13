@@ -21,7 +21,7 @@ LOGGING = {
     'disable_existing_loggers': False,
     'handlers': {
         'sentry': {
-            'level': 'ERROR',
+            'level': 'WARNING',
             'class': 'oc_lettings_site.sentry_logging.SentryHandler',
         },
     },
