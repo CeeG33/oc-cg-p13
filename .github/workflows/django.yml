@@ -32,6 +32,13 @@ jobs:
       id: coverage_test
       run: |
         pytest --cov-fail-under=80
+    - name: Login to Docker Hub
+      id: dockerhub_login
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      if: ${{ steps.coverage_test.outcome }} == "success"
     - name: Build and push Docker images
       uses: docker/build-push-action@v5.0.0
       with:
@@ -39,4 +46,4 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: ceeg33/oc-cg-p13:${{ github.sha }}
-      if: ${{ steps.coverage_test.outcome }} == "success"
+      if: ${{ steps.dockerhub_login.outcome }} == "success"
