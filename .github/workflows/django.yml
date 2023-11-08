@@ -29,5 +29,37 @@ jobs:
       run: |
         pytest
     - name: Ensures test coverage is above 80%
+      id: coverage_test
       run: |
         pytest --cov-fail-under=80
+    - name: Login to Docker Hub
+      id: dockerhub_login
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      if: ${{ steps.coverage_test.outcome }} == "success"
+    - name: Build and push Docker images
+      id: packaging
+      uses: docker/build-push-action@v5.0.0
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: ceeg33/oc-cg-p13:${{ github.sha }},ceeg33/oc-cg-p13:latest
+      if: ${{ steps.dockerhub_login.outcome }} == "success"
+    - name: Deploy Docker to AWS (EC2)
+      id: deployment
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.EC2_SECRET_KEY }}
+        script: |
+          docker stop oc-cg-p13 || true
+          docker rm oc-cg-p13 || true
+          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/oc-cg-p13:${{ github.sha }}
+          docker run -d --name oc-cg-p13 -p 8000:8000 ${{ secrets.DOCKERHUB_USERNAME }}/oc-cg-p13:${{ github.sha }}
+      if: ${{ steps.packaging.outcome }} == "success"
+
+
