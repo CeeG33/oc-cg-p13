@@ -54,7 +54,7 @@ jobs:
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USERNAME }}
-        key_path: ${{ secrets.EC2_SECRET_KEY }}
+        key: ${{ secrets.EC2_SECRET_KEY }}
         script: |
           docker stop oc-cg-p13 || true
           docker rm oc-cg-p13 || true
