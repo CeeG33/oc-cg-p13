@@ -15,9 +15,9 @@ ENV PYTHONUNBUFFERED 1
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-EXPOSE 80
+EXPOSE 8000
 
 VOLUME /static/
 VOLUME /template/
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
