@@ -45,5 +45,5 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ceeg33/oc-cg-p13:${{ github.sha }}
+        tags: ceeg33/oc-cg-p13:${{ github.sha }},ceeg33/oc-cg-p13:latest
       if: ${{ steps.dockerhub_login.outcome }} == "success"
