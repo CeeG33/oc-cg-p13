@@ -35,5 +35,8 @@ jobs:
     - name: Build and push Docker images
       uses: docker/build-push-action@v5.0.0
       with:
+        context: .
+        file: ./Dockerfile
+        push: true
         tags: ceeg33/oc-cg-p13:${{ github.sha }}
       if: ${{ steps.coverage_test.outcome }} == "success"
