@@ -23,19 +23,28 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        
+
+    - name: Creates and sets environment variables
+      id: dot_env_creation
+      run: |
+        echo "DSN=${{ secrets.SENTRY_DSN }}" > .env
+        echo "APP_SECRET_KEY=${{ secrets.APP_SECRET_KEY }}" >> .env
+      
     - name: Run Linting
       run: |
         flake8
+      if: ${{ steps.dot_env_creation.outcome }} == "success"
         
     - name: Run Tests
       run: |
         pytest
+      if: ${{ steps.dot_env_creation.outcome }} == "success"
         
     - name: Ensures test coverage is above 80%
       id: coverage_test
       run: |
         pytest --cov-fail-under=80
+      if: ${{ steps.dot_env_creation.outcome }} == "success"
         
     - name: Login to Docker Hub
       id: dockerhub_login
@@ -45,13 +54,6 @@ jobs:
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
       if: ${{ steps.coverage_test.outcome }} == "success"
       
-    - name: Creates and sets environment variables
-      id: dot_env_creation
-      run: |
-        echo "DSN=${{ secrets.SENTRY_DSN }}" > .env
-        echo "APP_SECRET_KEY=${{ secrets.APP_SECRET_KEY }}" >> .env
-      if: ${{ steps.dockerhub_login.outcome }} == "success"
-      
     - name: Build and push Docker images
       id: packaging
       uses: docker/build-push-action@v5.0.0
@@ -60,7 +62,7 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: ceeg33/oc-cg-p13:${{ github.sha }},ceeg33/oc-cg-p13:latest
-      if: ${{ steps.dot_env_creation.outcome }} == "success"
+      if: ${{ steps.dockerhub_login.outcome }} == "success"
       
     - name: Deploy Docker to AWS (EC2)
       id: deployment
