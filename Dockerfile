@@ -2,7 +2,8 @@
 FROM python:3.11
 
 # Copy project files to the destination file
-ADD . /usr/src/app/
+COPY . /usr/src/app/
+COPY static/ /usr/src/app/
 
 # Set work directory
 WORKDIR /usr/src/app
@@ -18,6 +19,5 @@ RUN pip install -r requirements.txt
 EXPOSE 8000
 
 VOLUME /static/
-VOLUME /template/
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
