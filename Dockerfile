@@ -6,7 +6,6 @@ WORKDIR /usr/src/app
 
 # Copy project files to the destination file
 COPY . /usr/src/app/
-COPY static /usr/src/app/static
 
 # Set some environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -17,6 +16,7 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN python manage.py collectstatic --noinput
 
+# Expose port 8000 for accessing the application
 EXPOSE 8000
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
