@@ -14,9 +14,12 @@ ENV PYTHONUNBUFFERED 1
 # Install dependencies
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+
+# Collecting static files
 RUN python manage.py collectstatic --noinput
 
 # Expose port 8000 for accessing the application
 EXPOSE 8000
 
+# Running the application
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
