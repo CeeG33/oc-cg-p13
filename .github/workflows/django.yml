@@ -59,7 +59,7 @@ jobs:
           docker stop oc-cg-p13 || true
           docker rm oc-cg-p13 || true
           docker pull ${{ secrets.DOCKERHUB_USERNAME }}/oc-cg-p13:${{ github.sha }}
-          docker run -d --name oc-cg-p13 ${{ secrets.DOCKERHUB_USERNAME }}/oc-cg-p13:${{ github.sha }}
+          docker run -d -p 8000:8000 --name oc-cg-p13 ${{ secrets.DOCKERHUB_USERNAME }}/oc-cg-p13:${{ github.sha }}
       if: ${{ steps.packaging.outcome }} == "success"
 
 
