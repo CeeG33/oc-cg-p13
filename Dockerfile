@@ -6,7 +6,6 @@ WORKDIR /usr/src/app
 
 # Copy project files to the destination file
 COPY . /usr/src/app/
-COPY static/ /usr/src/app/
 
 # Set some environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -15,6 +14,7 @@ ENV PYTHONUNBUFFERED 1
 # Install dependencies
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+RUN python manage.py collecstatic --noinput
 
 EXPOSE 8000
 
