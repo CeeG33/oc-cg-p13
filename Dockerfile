@@ -1,12 +1,11 @@
 # Pulls the official base image
 FROM python:3.11
 
-# Copy project files to the destination file
-COPY . /usr/src/app/
-COPY static/ /usr/src/app/
-
 # Set work directory
 WORKDIR /usr/src/app
+
+# Copy project files to the destination file
+COPY . /usr/src/app/
 
 # Set some environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
