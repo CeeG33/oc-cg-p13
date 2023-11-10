@@ -1,0 +1,50 @@
+name: OC-CG-P13 CI - Other branches
+
+on:
+  push:
+    branches-ignore: [ "master" ]
+  pull_request:
+    branches-ignore: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.11]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+        
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Creates and sets environment variables
+      id: dot_env_creation
+      run: |
+        echo "DSN=${{ secrets.SENTRY_DSN }}" > .env
+        echo "APP_SECRET_KEY=${{ secrets.APP_SECRET_KEY }}" >> .env
+      
+    - name: Run Linting
+      run: |
+        flake8
+      if: ${{ steps.dot_env_creation.outcome }} == "success"
+        
+    - name: Run Tests
+      run: |
+        pytest
+      if: ${{ steps.dot_env_creation.outcome }} == "success"
+        
+    - name: Ensures test coverage is above 80%
+      id: coverage_test
+      run: |
+        pytest --cov-fail-under=80
+      if: ${{ steps.dot_env_creation.outcome }} == "success"
+
