@@ -1,7 +1,9 @@
-name: OC-CG-P13 CI
+name: OC-CG-P13 CI/CD - Master branch only
 
 on:
   push:
+    branches: [ "master" ]
+  pull_request:
     branches: [ "master" ]
 
 jobs:
