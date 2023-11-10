@@ -21,3 +21,29 @@ def index(request):
         HttpResponse: The rendered index page as an HTTP response.
     """
     return render(request, 'index.html')
+
+
+def custom_404(request, exception):
+    """
+    Render the 404 error page.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The rendered custom 404 page as an HTTP response.
+    """
+    return render(request, '404.html', status=404)
+
+
+def custom_500(request, exception):
+    """
+    Render the 500 error page.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The rendered custom 500 page as an HTTP response.
+    """
+    return render(request, '500.html', status=500)

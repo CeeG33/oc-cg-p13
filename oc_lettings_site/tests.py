@@ -58,6 +58,22 @@ class TestOCLettingsSiteViews:
         assert response.status_code == 200
         assertTemplateUsed(response, "index.html")
 
+    def test_404_view(self, client):
+        """
+        GIVEN a client for an unexisting profile view,
+        WHEN the view is accessed,
+        THEN it should render with the expected content, status code, and template.
+        """
+        path = reverse("profiles:profile", kwargs={"username": "azazeaze"})
+        response = client.get(path)
+        content = response.content.decode()
+
+        expected_content = "404 - Page not found"
+
+        assert expected_content in content
+        assert response.status_code == 404
+        assertTemplateUsed(response, "404.html")
+
 
 def test_dummy():
     """Dummy test which was part of the initial repository."""
