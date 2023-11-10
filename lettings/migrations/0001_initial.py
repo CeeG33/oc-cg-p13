@@ -6,7 +6,7 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
+    """Initial migration creating the address and letting objects as is from the oc_lettings_site app."""
     initial = True
 
     dependencies = [

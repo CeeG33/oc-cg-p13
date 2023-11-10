@@ -6,7 +6,7 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
+    """Creation of the Profile model in the refactored app."""
     initial = True
 
     dependencies = [

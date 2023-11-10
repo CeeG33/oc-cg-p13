@@ -4,7 +4,7 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
+    """Amends the plural name of the Address object in the admin interface."""
     dependencies = [
         ('lettings', '0002_auto_20231031_1417'),
     ]

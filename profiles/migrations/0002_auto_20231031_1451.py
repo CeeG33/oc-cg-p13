@@ -5,6 +5,7 @@ from django.db import migrations
 
 
 def copy_profile_data(apps, schema_editor):
+    """Copies the old Profile objects data from the old app to the new app."""
     try:
         OldModel = apps.get_model("oc_lettings_site", "Profile")
     except LookupError:
@@ -21,7 +22,7 @@ def copy_profile_data(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
+    """Applies the migration to copy old Profile objects data to the new app."""
     dependencies = [
         ('profiles', '0001_initial'),
         ('oc_lettings_site', '0001_initial')

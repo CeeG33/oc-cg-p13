@@ -6,7 +6,7 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
+    """Altered the OnetoOneField of the old app's Profile model to avoid interference with the new Profile model."""
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('oc_lettings_site', '0001_initial'),

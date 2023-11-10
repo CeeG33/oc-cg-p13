@@ -5,6 +5,7 @@ from django.db import migrations
 
 
 def copy_address_data(apps, schema_editor):
+    """Copies the address data from the old app to the new app."""
     try:
         OldModel = apps.get_model("oc_lettings_site", "Address")
     except LookupError:
@@ -23,6 +24,7 @@ def copy_address_data(apps, schema_editor):
     )
 
 def copy_letting_data(apps, schema_editor):
+    """Copies the letting data from the old app to the new app."""
     try:
         OldModel = apps.get_model("oc_lettings_site", "Letting")
     except LookupError:
@@ -38,7 +40,7 @@ def copy_letting_data(apps, schema_editor):
     )
 
 class Migration(migrations.Migration):
-
+    """Applies the migration to copy the data from the old app to the new app."""
     dependencies = [
         ('lettings', '0001_initial'),
         ('oc_lettings_site', '0001_initial')

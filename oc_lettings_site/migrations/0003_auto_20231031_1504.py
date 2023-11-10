@@ -4,7 +4,7 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
+    """Deletion of the old app's models following app refactoring."""
     dependencies = [
         ('oc_lettings_site', '0002_auto_20231031_1457'),
     ]
