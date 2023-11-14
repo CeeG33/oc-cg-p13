@@ -23,7 +23,7 @@ def index(request):
     return render(request, 'index.html')
 
 
-def custom_404(request, exception):
+def custom_404(request, *args, **kwargs):
     """
     Render the 404 error page.
 
@@ -36,7 +36,7 @@ def custom_404(request, exception):
     return render(request, '404.html', status=404)
 
 
-def custom_500(request):
+def custom_500(request, *args, **kwargs):
     """
     Render the 500 error page.
 
