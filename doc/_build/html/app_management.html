@@ -1,0 +1,402 @@
+<!doctype html>
+<html class="no-js" lang="fr" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Recherche" href="search.html" /><link rel="prev" title="Guide d’utilisation" href="user_guide.html" />
+
+    <!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
+        <title>Déploiement et gestion de l’application - Documentation OC Lettings Site 1</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Documentation OC Lettings Site 1</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">Documentation OC Lettings Site 1</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Recherche" name="q" aria-label="Recherche">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Table des matières :</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="project_description.html">Description du projet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Démarrage rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools_used.html">Technologies et langages de programmation utilisés</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database_structure.html">Structure et modèles de la base de données</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interfaces.html">Interfaces de programmation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide.html">Guide d’utilisation</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Déploiement et gestion de l’application</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="deploiement-et-gestion-de-l-application">
+<h1>Déploiement et gestion de l’application<a class="headerlink" href="#deploiement-et-gestion-de-l-application" title="Link to this heading">#</a></h1>
+<section id="deploiement">
+<h2>Déploiement<a class="headerlink" href="#deploiement" title="Link to this heading">#</a></h2>
+<p>Le déploiement est le processus qui va s’occuper de mettre le site en
+production de façon automatisée à chaque commit sur la branche master du repository.
+Lors de chaque commit sur la branche master, les étapes suivantes se réalisent
+automatiquement à l’aide d’une pipeline CI / CD :</p>
+<ul class="simple">
+<li><p>Reproduction de l’environnement de développement local.</p></li>
+<li><p>Vérification du formatage du code (Linting).</p></li>
+<li><p>Déclenchement de la suite de tests implantée avec le code.</p></li>
+<li><p>Vérification de la couverture de test (doit supérieure à 80%).</p></li>
+<li><p>Conteneurisation de l’application via Docker. Image générée, pushée sur Docker Hub.</p></li>
+<li><p>Mise en service du site chez l’hébergeur AWS.</p></li>
+</ul>
+<section id="pre-requis">
+<h3>Pré-requis<a class="headerlink" href="#pre-requis" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Compte GitHub avec accès en lecture à ce repository.</p></li>
+<li><p>Compte Docker Hub.</p></li>
+<li><p>Compte Sentry avec un projet déjà configuré.</p></li>
+<li><p>Compte AWS avec possibilité de lancer des instances EC2.</p></li>
+</ul>
+</section>
+<section id="configurer-le-deploiement">
+<h3>Configurer le déploiement<a class="headerlink" href="#configurer-le-deploiement" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Sur AWS, créer une instance EC2 sous Amazon Linux.
+Durant cette étape, il faut bien veiller à créer une paire de clés
+puis télécharger et stocker le fichier .pem généré dans un endroit
+sécurisé sur votre disque dur local.</p></li>
+<li><p>Toujours sur AWS, ajouter la règle entrante suivante dans le groupe
+de sécurité par défaut (launch-wizard-1) de l’EC2 fraîchement créé :
+<code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">IP</span> <span class="pre">:</span> <span class="pre">IPv4</span> <span class="pre">|</span> <span class="pre">Type</span> <span class="pre">:</span> <span class="pre">TCP</span> <span class="pre">personnalisé</span> <span class="pre">|</span>
+<span class="pre">Protocole</span> <span class="pre">:</span> <span class="pre">TCP</span> <span class="pre">|</span> <span class="pre">Plage</span> <span class="pre">de</span> <span class="pre">ports</span> <span class="pre">:</span> <span class="pre">8000</span> <span class="pre">|</span> <span class="pre">Source</span> <span class="pre">:</span> <span class="pre">0.0.0.0/0</span></code></p></li>
+<li><p>Lancer l’instance EC2.</p></li>
+<li><p>Sur GitHub, ajouter les variables d’environnement (secrets) suivants
+en allant dans la section <code class="docutils literal notranslate"><span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Secrets</span> <span class="pre">and</span> <span class="pre">variables</span> <span class="pre">&gt;</span> <span class="pre">Actions</span></code>
+et en cliquant sur <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">repository</span> <span class="pre">secret</span></code>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">APP_SECRET_KEY</span></code> : Clé secrète de l’application Django.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DOCKERHUB_USERNAME</span></code> : Identifiant du compte Docker Hub.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DOCKERHUB_PASSWORD</span></code> : Mot de passe du compte Docker Hub.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SENTRY_DSN</span></code> : Lien de rattachement DSN à la journalisation Sentry.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EC2_HOST</span></code> : DNS IPv4 public obtenue après lancement de l’instance EC2
+(exemple : ec2-54-159-98-184.compute-1.amazonaws.com).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EC2_USERNAME</span></code> : ec2-user</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EC2_SECRET_KEY</span></code> : Contenu du fichier .pem généré lors de la création
+de l’instance EC2.</p></li>
+</ul>
+</li>
+<li><p>Tester le bon déploiement du site après avoir réalisé un commit sur
+la branche principale du repository.</p></li>
+</ul>
+</section>
+</section>
+<section id="gestion-de-l-application">
+<h2>Gestion de l’application<a class="headerlink" href="#gestion-de-l-application" title="Link to this heading">#</a></h2>
+<section id="acces-a-l-interface-d-administration">
+<h3>Accès à l’interface d’administration<a class="headerlink" href="#acces-a-l-interface-d-administration" title="Link to this heading">#</a></h3>
+<p>Veuillez vous rendre sur l’URL suivant :</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">http://&lt;adresse-ip-publique-fournie-par-l'hébergeur&gt;:8000/admin/</span></code></p>
+<ul>
+<li><p>Exemple : <a class="reference external" href="http://54.159.98.184:8000/admin/">http://54.159.98.184:8000/admin/</a></p></li>
+</ul>
+</li>
+</ul>
+<p>Connectez-vous avec les informations suivantes :</p>
+<ul class="simple">
+<li><p>Login : admin</p></li>
+<li><p>Mot de passe : Abc1234!</p></li>
+</ul>
+<section id="ajout-d-un-objet">
+<h4>Ajout d’un objet<a class="headerlink" href="#ajout-d-un-objet" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Une fois connecté sur l’interface d’administration, veuillez cliquer
+sur le bouton <code class="docutils literal notranslate"><span class="pre">Add</span></code> en face du type de modèle que vous souhaitez ajouter.</p></li>
+<li><p>Remplissez le formulaire.</p></li>
+<li><p>Cliquez sur le bouton <code class="docutils literal notranslate"><span class="pre">SAVE</span></code>.</p></li>
+</ul>
+</section>
+<section id="modification-d-un-objet">
+<h4>Modification d’un objet<a class="headerlink" href="#modification-d-un-objet" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Une fois connecté sur l’interface d’administration, veuillez cliquer
+sur le bouton <code class="docutils literal notranslate"><span class="pre">Change</span></code> en face du type de modèle que vous souhaitez modifier.</p></li>
+<li><p>Cliquez sur l’objet à modifier.</p></li>
+<li><p>Remplissez le formulaire.</p></li>
+<li><p>Cliquez sur le bouton <code class="docutils literal notranslate"><span class="pre">SAVE</span></code>.</p></li>
+</ul>
+</section>
+<section id="suppression-d-un-objet">
+<h4>Suppression d’un objet<a class="headerlink" href="#suppression-d-un-objet" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Une fois connecté sur l’interface d’administration, veuillez cliquer
+sur le bouton <code class="docutils literal notranslate"><span class="pre">Change</span></code> en face du type de modèle que vous souhaitez supprimer.</p></li>
+<li><p>Cliquez sur l’objet à supprimer.</p></li>
+<li><p>Cliquez sur le bouton <code class="docutils literal notranslate"><span class="pre">Delete</span></code>.</p></li>
+<li><p>Confirmez votre choix en cliquant sur le bouton <code class="docutils literal notranslate"><span class="pre">Yes,</span> <span class="pre">I'm</span> <span class="pre">sure</span></code>.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="journalisation">
+<h2>Journalisation<a class="headerlink" href="#journalisation" title="Link to this heading">#</a></h2>
+<p>Une journalisation a été mise en place en utilisant Sentry. Celle-ci renvoie
+les erreurs et exceptions levées (erreurs 404 &amp; 500, …) lors de l’utilisation
+du site par un utilisateur.</p>
+</section>
+<section id="base-de-donnees">
+<h2>Base de données<a class="headerlink" href="#base-de-donnees" title="Link to this heading">#</a></h2>
+<p>Les données du site sont stockées sur un fichier SQLite nommé
+<code class="docutils literal notranslate"><span class="pre">oc-lettings-site.sqlite3</span></code>. Il s’agit d’une solution temporaire en attendant
+une utilisation plus accrue du site qui justifierait l’adoption d’une technologie
+plus adaptée.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="user_guide.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Guide d’utilisation</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, CeeG33
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Déploiement et gestion de l’application</a><ul>
+<li><a class="reference internal" href="#deploiement">Déploiement</a><ul>
+<li><a class="reference internal" href="#pre-requis">Pré-requis</a></li>
+<li><a class="reference internal" href="#configurer-le-deploiement">Configurer le déploiement</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#gestion-de-l-application">Gestion de l’application</a><ul>
+<li><a class="reference internal" href="#acces-a-l-interface-d-administration">Accès à l’interface d’administration</a><ul>
+<li><a class="reference internal" href="#ajout-d-un-objet">Ajout d’un objet</a></li>
+<li><a class="reference internal" href="#modification-d-un-objet">Modification d’un objet</a></li>
+<li><a class="reference internal" href="#suppression-d-un-objet">Suppression d’un objet</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#journalisation">Journalisation</a></li>
+<li><a class="reference internal" href="#base-de-donnees">Base de données</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=a12a2fe1"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="_static/translations.js?v=d99ca74e"></script>
+    </body>
+</html>

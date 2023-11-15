@@ -7,8 +7,8 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'OC Lettings Site'
-copyright = '2023, Ciran GÜRBÜZ'
-author = 'Ciran GÜRBÜZ'
+copyright = '2023, CeeG33'
+author = 'CeeG33'
 release = '1'
 
 # -- General configuration ---------------------------------------------------
@@ -24,5 +24,5 @@ language = 'fr'
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'alabaster'
+html_theme = 'furo'
 html_static_path = ['_static']
