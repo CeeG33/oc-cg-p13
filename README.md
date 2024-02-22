@@ -1,6 +1,9 @@
-## Résumé
+- ![Static Badge](https://img.shields.io/badge/P13%20Mettez%20%C3%A0%20l'%C3%A9chelle%20une%20application%20Django%20en%20utilisant%20une%20architecture%20modulaire-blue?label=Projet)
+- ![Static Badge](https://img.shields.io/badge/Ciran_G%C3%9CRB%C3%9CZ-darkgreen?label=Auteur)
 
-Site web d'Orange County Lettings
+## Orange County Lettings : site web de location de biens immobiliers (English version down below)
+
+Site web d'Orange County Lettings.
 
 ## Développement local
 
@@ -23,9 +26,9 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 #### Créer l'environnement virtuel
 
 - `cd /path/to/Python-OC-Lettings-FR`
-- `python -m venv venv`
+- `python -m venv env`
 - `apt-get install python3-venv` (Si l'étape précédente comporte des erreurs avec un paquet non trouvé sur Ubuntu)
-- Activer l'environnement `source venv/bin/activate`
+- Activer l'environnement `source env/bin/activate`
 - Confirmer que la commande `python` exécute l'interpréteur Python dans l'environnement virtuel
 `which python`
 - Confirmer que la version de l'interpréteur Python est la version 3.6 ou supérieure `python --version`
@@ -35,7 +38,7 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 #### Exécuter le site
 
 - `cd /path/to/Python-OC-Lettings-FR`
-- `source venv/bin/activate`
+- `source env/bin/activate`
 - `pip install --requirement requirements.txt`
 - `python manage.py runserver`
 - Aller sur `http://localhost:8000` dans un navigateur.
@@ -44,13 +47,13 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 #### Linting
 
 - `cd /path/to/Python-OC-Lettings-FR`
-- `source venv/bin/activate`
+- `source env/bin/activate`
 - `flake8`
 
 #### Tests unitaires
 
 - `cd /path/to/Python-OC-Lettings-FR`
-- `source venv/bin/activate`
+- `source env/bin/activate`
 - `pytest`
 
 #### Base de données
@@ -73,7 +76,7 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 
 Utilisation de PowerShell, comme ci-dessus sauf :
 
-- Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
+- Pour activer l'environnement virtuel, `.\env\Scripts\Activate.ps1` 
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
 
 ## Déploiement
@@ -112,3 +115,128 @@ EC2_USERNAME >> ec2-user
 EC2_SECRET_KEY >> Contenu du fichier .pem généré lors de la création de l'instance EC2.
 ```
 - Tester le bon déploiement du site après avoir réalisé un commit sur la branche principale du repository.
+
+## Documentation
+
+Vous pouvez consulter la documentation du site en vous rendant sur le lien suivant : [https://oc-cg-p13.readthedocs.io/](https://oc-cg-p13.readthedocs.io/)
+
+______________________________________
+
+## Orange County Lettings : Real Estate Rental Website
+
+Orange County Lettings' website.
+
+## Local Development
+
+### Prerequisites
+
+- GitHub account with read access to this repository
+- Git CLI
+- SQLite3 CLI
+- Python interpreter, version 3.6 or higher
+
+Throughout the documentation for local development, it is assumed that the python command in your OS shell runs the Python interpreter mentioned above (unless a virtual environment is activated).
+
+### macOS / Linux
+
+#### Clone the repository
+
+- `cd /path/to/put/project/in`.
+- `git clone https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR.git`.
+
+#### Create a virtual environment
+
+- `cd /path/to/Python-OC-Lettings-FR`.
+- `python -m venv env`.
+- `apt-get install python3-venv` (If the previous step encounters errors with a package not found on Ubuntu).
+- Activate the environment with `source env/bin/activate`.
+- Confirm that the `python` command runs the Python interpreter in the virtual environment with 
+`which python`.
+- Confirm that the version of the Python interpreter is 3.6 or higher with `python --version`.
+- Confirm that the `pip` command runs the pip executable in the virtual environment with `which pip`.
+- To deactivate the environment, use the `deactivate` command.
+
+#### Run the site
+
+- `cd /path/to/Python-OC-Lettings-FR`
+- `source env/bin/activate`
+- `pip install --requirement requirements.txt`
+- `python manage.py runserver`
+- Go to `http://localhost:8000` in a browser.
+- Confirm that the site is working, and navigation is possible (you should see several profiles and lettings).
+
+#### Linting
+
+- `cd /path/to/Python-OC-Lettings-FR`
+- `source env/bin/activate`
+- `flake8`
+
+#### Unit Tests
+
+- `cd /path/to/Python-OC-Lettings-FR`
+- `source env/bin/activate`
+- `pytest`
+
+#### Database
+
+- `cd /path/to/Python-OC-Lettings-FR`
+- Open a shell session with `sqlite3`
+- Connect to the database `.open oc-lettings-site.sqlite3`
+- Display tables in the database `.tables`
+- Display columns in the profiles table, `pragma table_info(Python-OC-Lettings-FR_profile);`
+- Run a query on the profiles table, `select user_id, favorite_city from
+  Python-OC-Lettings-FR_profile where favorite_city like 'B%';`
+- `.quit` to exit
+
+#### Site Administration Interface
+
+- Go to `http://localhost:8000/admin`
+- Log in with the user `admin`, password `Abc1234!`
+
+### Windows
+
+Use PowerShell, as above except:
+
+- To activate the virtual environment, `.\env\Scripts\Activate.ps1` 
+- Replace `which <my-command>` with `(Get-Command <my-command>).Path`
+
+## Deployment
+
+Deployment is the process that will automate putting the site into production with each commit to the master branch of the repository. 
+With each commit to the master branch, the following steps are automatically performed using a CI/CD pipeline:
+
+- Recreation of the local development environment.
+- Code formatting check (Linting).
+- Execution of the test suite implemented with the code.
+- Verification that the test coverage is above 80%.
+- Containerization of the application via Docker. Image generated, pushed to Docker Hub.
+- Deployment of the site to the AWS hosting provider.
+
+### Prerequisites
+
+- GitHub account with read access to this repository.
+- Docker Hub account.
+- Sentry account with a pre-configured project.
+- AWS account with the ability to launch EC2 instances.
+
+### Configure Deployment
+
+- On AWS, create an EC2 instance under Amazon Linux. During this step, be sure to create a key pair and download and store the generated .pem file on your local hard drive in a safe location.
+- Still on AWS, add the following incoming rule to the default security group (launch-wizard-1) of the newly created EC2:
+```Version IP : IPv4 | Type : TCP personnalisé | Protocole : TCP | Plage de ports : 8000 | Source : 0.0.0.0/0```
+- Launch the EC2 instance.
+- On GitHub, add the following environment variables (secrets) by going to ```Settings > Secrets and variables > Actions``` and clicking ```New repository secret```:
+```
+APP_SECRET_KEY >> Secret key of the Django application.
+DOCKERHUB_USERNAME >> Docker Hub account username.
+DOCKERHUB_PASSWORD >> Docker Hub account password.
+SENTRY_DSN >> Sentry logging DSN link.
+EC2_HOST >> Public IPv4 DNS obtained after launching the EC2 instance (example: ec2-54-159-98-184.compute-1.amazonaws.com).
+EC2_USERNAME >> ec2-user
+EC2_SECRET_KEY >> Contents of the .pem file generated during EC2 instance creation.
+```
+- Test the successful deployment of the site after committing to the main branch of the repository.
+
+## Documentation
+
+You can view the site's documentation by visiting the following link: [https://oc-cg-p13.readthedocs.io/](https://oc-cg-p13.readthedocs.io/)
