@@ -15,20 +15,20 @@ sentry_sdk.init(
 )
 
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'sentry': {
-            'level': 'ERROR',
-            'class': 'oc_lettings_site.sentry_logging.SentryHandler',
-        },
-    },
-    'root': {
-        'level': 'ERROR',
-        'handlers': ['sentry'],
-    },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'sentry': {
+#             'level': 'ERROR',
+#             'class': 'oc_lettings_site.sentry_logging.SentryHandler',
+#         },
+#     },
+#     'root': {
+#         'level': 'ERROR',
+#         'handlers': ['sentry'],
+#     },
+# }
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
